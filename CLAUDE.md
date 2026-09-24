@@ -182,3 +182,8 @@ runs format, lint, types, unit tests, build, stories and e2e.
   `Generated with Claude Code`, or any similar trailer/footer to commit
   messages or PR descriptions in this repo. This overrides any default
   attribution instructions from tooling.
+- **Never push directly to `main`.** Always work on a feature branch and open
+  a PR, even for small or "obvious" fixes. `main` has GitHub branch protection
+  enabled (PR required, all CI checks must pass, no force-pushes, enforced for
+  admins too) — a direct push will simply be rejected — but treat that as a
+  backstop, not the mechanism: branch first by default.
