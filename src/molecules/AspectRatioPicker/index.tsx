@@ -12,6 +12,9 @@ const Fieldset = styled.fieldset`
   border: 0;
   padding: 0;
   margin: 0;
+  /* Only one aspect ratio preset ships right now, so there's nothing to
+     choose between yet — hidden until a second preset lands. */
+  display: none;
 `;
 
 const Legend = styled.legend`
