@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HyvesFoto.nl
 
-## Getting Started
+Crop and combine photos so they fit the Hyves timeline instead of being
+hard-cropped through someone's face.
 
-First, run the development server:
+Hyves renders timeline images at roughly **15:6** and crops anything that
+doesn't match to fit — no matter what's in the frame. HyvesFoto lets you
+choose the crop yourself, or lay several photos out into one magazine-style
+collage sized to the timeline ratio, and export an image that already fits.
+
+**Everything runs in the browser.** There's no backend, no database, no
+account. Your photos are never uploaded: they're held as Blobs in IndexedDB
+on your own device and composed on a `<canvas>` locally.
+
+> **Not affiliated with Hyves.** This is an independent, unofficial fan tool
+> with no association with, endorsement from, or connection to Hyves or its
+> operators. "Hyves" and any related names, logos, and brand assets are the
+> property of their respective owners and are referenced here only to
+> describe the timeline format this tool targets.
+
+## Features
+
+- **Single-photo crop** — pan and zoom a photo inside the target frame with
+  live preview.
+- **Collage grid** — drop in multiple photos, arrange them into one
+  timeline-shaped collage, and drag to swap tiles.
+- **Export** — render the result to an image sized for the Hyves timeline.
+- **Nothing leaves the device** — no uploads, no tracking, no server state.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+pnpm exec playwright install chromium   # needed for story + e2e tests
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command              | What it does                                    |
+| -------------------- | ----------------------------------------------- |
+| `pnpm dev`           | Dev server                                      |
+| `pnpm build`         | Production build                                |
+| `pnpm start`         | Serve the production build                      |
+| `pnpm test`          | Unit + component tests (Vitest)                 |
+| `pnpm test:watch`    | The same, in watch mode                         |
+| `pnpm test:stories`  | Every Storybook story, smoke-tested in Chromium |
+| `pnpm test:e2e`      | Playwright, against a production build          |
+| `pnpm test:coverage` | Coverage report                                 |
+| `pnpm storybook`     | Storybook on :6006                              |
+| `pnpm lint`          | ESLint                                          |
+| `pnpm typecheck`     | `tsc --noEmit`                                  |
+| `pnpm format`        | Prettier                                        |
 
-## Learn More
+CI (`.github/workflows/ci.yml`) runs format, lint, types, unit tests, build,
+story smoke tests, and Playwright e2e on every push and pull request to
+`main`.
 
-To learn more about Next.js, take a look at the following resources:
+## Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Next.js 16 (App Router) · React 19 · TypeScript · styled-components ·
+zustand · IndexedDB (`idb`) · dnd-kit · Vitest · Playwright · Storybook 10
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## A note on the timeline ratio
 
-## Deploy on Vercel
+The 15:6 crop ratio is Hyves's current best-guess measurement, not a
+confirmed constant — a feed screenshot once measured closer to 9:4. The value
+lives in one place, [`src/content/aspectRatios.ts`](./src/content/aspectRatios.ts),
+and nothing else hard-codes it, so correcting it is a one-line change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Conventions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Atomic design, functional style (no classes, immutable updates, pure
+geometry helpers), colocated tests. See [CLAUDE.md](./CLAUDE.md) for the full
+set of conventions this codebase is written against.
+
+## Contributing
+
+Issues and pull requests are welcome. Please run `pnpm lint`, `pnpm
+typecheck`, and `pnpm test` before opening a PR — CI runs the same checks
+plus stories and e2e.
+
+## License
+
+[MIT](./LICENSE) — for this project's own code only. It does not grant any
+rights to the Hyves name, logos, or other Hyves brand assets, which remain
+the copyright of their respective owners.
