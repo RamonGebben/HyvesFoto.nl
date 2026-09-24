@@ -19,29 +19,26 @@ const Slider = styled.input`
   flex: 1;
   /* Range inputs have a browser-default intrinsic width (~129px) that a
      flex item won't shrink below unless min-width is reset — without this
-     the track can overflow its container on narrow phones. */
+     the track overflows its card on narrow phones (iPhone SE and similar). */
   min-width: 0;
   accent-color: ${props => props.theme.color.action};
 `;
 
-export type GapWidthSliderProps = {
-  gapRatio: number;
-  min: number;
-  max: number;
-  onChange: (gapRatio: number) => void;
+export type MobileGuideOpacitySliderProps = {
+  /** 0 (hidden) to 1 (fully visible). */
+  opacity: number;
+  onChange: (opacity: number) => void;
   label?: string;
 };
 
 const STEP_COUNT = 100;
 
-/** A slider for the gap between collage tiles, down to exactly 0. */
-export const GapWidthSlider = ({
-  gapRatio,
-  min,
-  max,
+/** Adjusts how visible the mobile safe-zone shutters/ticks are on the canvas. */
+export const MobileGuideOpacitySlider = ({
+  opacity,
   onChange,
-  label = 'Randbreedte',
-}: GapWidthSliderProps) => {
+  label = 'Mobiele afsnijding tonen',
+}: MobileGuideOpacitySliderProps) => {
   const inputId = useId();
 
   return (
@@ -50,10 +47,10 @@ export const GapWidthSlider = ({
       <Slider
         id={inputId}
         type="range"
-        min={min}
-        max={max}
-        step={(max - min) / STEP_COUNT}
-        value={gapRatio}
+        min={0}
+        max={1}
+        step={1 / STEP_COUNT}
+        value={opacity}
         onChange={event => onChange(Number(event.target.value))}
       />
     </Wrapper>

@@ -46,16 +46,22 @@ const LoadingTile = styled.div`
 `;
 
 /**
- * Sits above `CropCanvas` in DOM order (so it paints on top with no
- * z-index needed) but is not nested inside its pannable `Frame` — a
- * pointerdown here must never bubble into `Frame`'s own raw pointer
- * handlers, or dragging a button here would also start a pan.
+ * Sits above `CropCanvas` in DOM order but is not nested inside its
+ * pannable `Frame` — a pointerdown here must never bubble into `Frame`'s
+ * own raw pointer handlers, or dragging a button here would also start a
+ * pan.
+ *
+ * `zIndex.tileControls` is needed on top of that DOM ordering: `CollageGrid`
+ * overlays a whole-canvas `MobileSafeZoneOverlay` (`zIndex.canvasOverlay`)
+ * above every tile, and without an explicit z-index here that overlay's
+ * semi-transparent shutters would paint over these buttons too.
  */
 const TopBar = styled.div`
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
+  z-index: ${props => props.theme.zIndex.tileControls};
   display: flex;
   align-items: center;
   gap: ${props => props.theme.space.xxs};

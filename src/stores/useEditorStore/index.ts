@@ -29,11 +29,15 @@ export const MIN_GAP_RATIO = 0;
 export const MAX_GAP_RATIO = 0.04;
 const DEFAULT_GAP_RATIO = 0.012;
 
+/** How visible the mobile safe-zone guide is, from 0 (hidden) to 1 (full). */
+const DEFAULT_MOBILE_GUIDE_OPACITY = 1;
+
 type EditorState = {
   aspectRatioId: AspectRatioId;
   images: readonly EditorImage[];
   cropViews: Readonly<Record<string, CropView>>;
   gapRatio: number;
+  mobileGuideOpacity: number;
   /** Which curated/generated layout is picked for the current image count. */
   selectedLayoutId: string | undefined;
   setAspectRatioId: (aspectRatioId: AspectRatioId) => void;
@@ -43,6 +47,7 @@ type EditorState = {
   setImageNaturalSize: (id: string, naturalSize: Size) => void;
   setCropView: (id: string, view: CropView) => void;
   setGapRatio: (gapRatio: number) => void;
+  setMobileGuideOpacity: (mobileGuideOpacity: number) => void;
   setSelectedLayoutId: (id: string) => void;
   /** Swaps two images' positions, i.e. which grid tile each one occupies. */
   moveImage: (fromId: string, toId: string) => void;
@@ -54,6 +59,7 @@ export const useEditorStore = create<EditorState>()(
     images: [],
     cropViews: {},
     gapRatio: DEFAULT_GAP_RATIO,
+    mobileGuideOpacity: DEFAULT_MOBILE_GUIDE_OPACITY,
     selectedLayoutId: undefined,
 
     setAspectRatioId: aspectRatioId =>
@@ -101,6 +107,11 @@ export const useEditorStore = create<EditorState>()(
     setGapRatio: gapRatio =>
       set(state => {
         state.gapRatio = gapRatio;
+      }),
+
+    setMobileGuideOpacity: mobileGuideOpacity =>
+      set(state => {
+        state.mobileGuideOpacity = mobileGuideOpacity;
       }),
 
     setSelectedLayoutId: id =>

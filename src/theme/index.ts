@@ -53,6 +53,9 @@ export const theme = {
   },
   zIndex: {
     canvasOverlay: 10,
+    /** Floating per-tile controls (drag handle, focus/remove buttons) —
+     * above `canvasOverlay` so they never get visually tinted by it. */
+    tileControls: 20,
     header: 100,
     modal: 1000,
     toast: 1100,
