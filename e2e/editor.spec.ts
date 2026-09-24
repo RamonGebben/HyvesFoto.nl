@@ -21,6 +21,13 @@ const dragOnto = async (page: Page, fromLabel: RegExp, toLabel: RegExp) => {
   const from = page.getByRole('button', { name: fromLabel });
   const to = page.getByRole('group', { name: toLabel });
 
+  // On a phone viewport the grid can sit below the fold. Playwright's mouse
+  // coordinates are viewport-relative, so make the drop target visible before
+  // reading either bounding box and starting the drag.
+  await to.scrollIntoViewIfNeeded();
+  await expect(from).toBeVisible();
+  await expect(to).toBeVisible();
+
   const fromBox = await from.boundingBox();
   const toBox = await to.boundingBox();
   if (!fromBox || !toBox) throw new Error('Could not locate drag elements.');

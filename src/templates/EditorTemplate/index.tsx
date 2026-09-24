@@ -64,6 +64,11 @@ const Card = styled.section`
   background: ${props => props.theme.color.surface};
   border-radius: ${props => props.theme.radius.lg};
   box-shadow: ${props => props.theme.shadow.md};
+
+  @media (max-width: 480px) {
+    padding: ${props => props.theme.space.md};
+    gap: ${props => props.theme.space.sm};
+  }
 `;
 
 const CardHeader = styled.div`
@@ -174,9 +179,9 @@ export const EditorTemplate = ({
             <div>
               <CardTitle>Jouw collage</CardTitle>
               <CardHint>
-                Sleep, scroll of knijp in een foto om te verschuiven en te
-                zoomen. Versleep het handvat bovenaan een foto om van plek te
-                wisselen met een andere.
+                Tik op het vergroot-icoon voor meer ruimte om een foto te
+                bewerken. Sleep of knijp in de collage om direct te schuiven en
+                te zoomen. Versleep het handvat om foto’s te wisselen.
               </CardHint>
             </div>
             <Button

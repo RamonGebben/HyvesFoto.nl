@@ -2,6 +2,7 @@
 
 import { useDraggable, useDroppable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
+import { Maximize2 } from 'lucide-react';
 import styled from 'styled-components';
 
 import { CropCanvas } from '~/organisms/CropCanvas';
@@ -106,6 +107,7 @@ export type CollageTileProps = {
   readonly ratio: Ratio;
   readonly rect: Rect;
   readonly onCropViewChange: (view: CropView) => void;
+  readonly onFocus: () => void;
   readonly onRemove: () => void;
   readonly isExporting: boolean;
   /** True while any tile in the grid is being dragged, this one included. */
@@ -121,6 +123,7 @@ export const CollageTile = ({
   ratio,
   rect,
   onCropViewChange,
+  onFocus,
   onRemove,
   isExporting,
   isDragActive,
@@ -160,6 +163,14 @@ export const CollageTile = ({
           >
             ⠿
           </DragHandle>
+          <IconButton
+            type="button"
+            onClick={onFocus}
+            disabled={isDragActive || isExporting}
+            aria-label={`Bewerk ${name} groter`}
+          >
+            <Maximize2 size={16} />
+          </IconButton>
           <IconButton
             type="button"
             onClick={onRemove}
