@@ -12,6 +12,7 @@ const Fieldset = styled.fieldset`
   border: 0;
   padding: 0;
   margin: 0;
+  display: none;
 `;
 
 const Legend = styled.legend`
