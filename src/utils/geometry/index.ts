@@ -34,8 +34,3 @@ export const toRatioValue = (ratio: Ratio): number => {
 
   return ratio.width / ratio.height;
 };
-
-export const rectToSize = (rect: Rect): Size => ({
-  width: rect.width,
-  height: rect.height,
-});
