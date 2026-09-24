@@ -52,6 +52,15 @@ export const palette = {
   /** Backdrop behind the crop/collage canvas. */
   canvas: '#ece3d9',
   overlay: 'rgba(28, 63, 99, 0.5)',
+
+  /** Full-screen scrim behind the focused single-tile crop editor. */
+  modalBackdrop: 'rgba(12, 20, 32, 0.94)',
+  /** Border/background of controls sitting on `modalBackdrop`. */
+  modalControlBorder: 'rgba(255, 255, 255, 0.35)',
+  modalControlBg: 'rgba(255, 255, 255, 0.12)',
+  /** Dark scrim behind icon buttons floating on top of a photo tile. */
+  scrimOnImage: 'rgba(0, 0, 0, 0.45)',
+  scrimOnImageHover: 'rgba(0, 0, 0, 0.65)',
 } as const;
 
 export type ColorToken = keyof typeof palette;

@@ -71,14 +71,14 @@ const IconButton = styled.button`
   flex-shrink: 0;
   border: none;
   border-radius: ${props => props.theme.radius.pill};
-  background: rgba(0, 0, 0, 0.45);
+  background: ${props => props.theme.color.scrimOnImage};
   color: ${props => props.theme.color.accentContrast};
   cursor: pointer;
   font-size: ${props => props.theme.fontSize.sm};
   line-height: 1;
 
   &:hover:not(:disabled) {
-    background: rgba(0, 0, 0, 0.65);
+    background: ${props => props.theme.color.scrimOnImageHover};
   }
 
   &:disabled {

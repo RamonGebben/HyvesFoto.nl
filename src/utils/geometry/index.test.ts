@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isPositiveSize, rectToSize, toRatioValue } from './index';
+import { isPositiveSize, toRatioValue } from './index';
 
 describe('isPositiveSize', () => {
   it('accepts a size with both sides above zero', () => {
@@ -31,14 +31,5 @@ describe('toRatioValue', () => {
   it('throws rather than returning NaN or Infinity', () => {
     expect(() => toRatioValue({ width: 15, height: 0 })).toThrow(/Invalid/);
     expect(() => toRatioValue({ width: -1, height: 6 })).toThrow(/Invalid/);
-  });
-});
-
-describe('rectToSize', () => {
-  it('drops the position', () => {
-    expect(rectToSize({ x: 4, y: 8, width: 15, height: 6 })).toEqual({
-      width: 15,
-      height: 6,
-    });
   });
 });

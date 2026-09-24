@@ -31,8 +31,8 @@ const FocusEditor = styled.div`
   justify-content: center;
   gap: ${props => props.theme.space.md};
   padding: ${props => props.theme.space.md};
-  background: rgba(12, 20, 32, 0.94);
-  color: white;
+  background: ${props => props.theme.color.modalBackdrop};
+  color: ${props => props.theme.color.darkContrast};
 `;
 
 const FocusHeader = styled.div`
@@ -60,10 +60,10 @@ const FocusCanvas = styled.div<{ $ratio: number }>`
 const FocusButton = styled.button`
   min-height: 44px;
   padding: 0 ${props => props.theme.space.md};
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid ${props => props.theme.color.modalControlBorder};
   border-radius: ${props => props.theme.radius.pill};
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
+  background: ${props => props.theme.color.modalControlBg};
+  color: ${props => props.theme.color.darkContrast};
   font: inherit;
   cursor: pointer;
 `;
