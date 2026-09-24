@@ -78,6 +78,7 @@ export const useCollageEditor = () => {
   const images = useEditorStore(state => state.images);
   const cropViews = useEditorStore(state => state.cropViews);
   const gapRatio = useEditorStore(state => state.gapRatio);
+  const mobileGuideOpacity = useEditorStore(state => state.mobileGuideOpacity);
   const selectedLayoutId = useEditorStore(state => state.selectedLayoutId);
   const setAspectRatioId = useEditorStore(state => state.setAspectRatioId);
   const addImages = useEditorStore(state => state.addImages);
@@ -88,6 +89,9 @@ export const useCollageEditor = () => {
   );
   const setCropView = useEditorStore(state => state.setCropView);
   const setGapRatio = useEditorStore(state => state.setGapRatio);
+  const setMobileGuideOpacity = useEditorStore(
+    state => state.setMobileGuideOpacity,
+  );
   const setSelectedLayoutId = useEditorStore(
     state => state.setSelectedLayoutId,
   );
@@ -285,9 +289,11 @@ export const useCollageEditor = () => {
     gapRatio,
     minGapRatio: MIN_GAP_RATIO,
     maxGapRatio: MAX_GAP_RATIO,
+    mobileGuideOpacity,
     onSelectAspectRatio: setAspectRatioId,
     onSelectLayout: setSelectedLayoutId,
     onGapRatioChange: setGapRatio,
+    onMobileGuideOpacityChange: setMobileGuideOpacity,
     onFilesAccepted: handleFilesAccepted,
     onRemoveImage: handleRemoveImage,
     onCropViewChange: handleCropViewChange,

@@ -3,7 +3,7 @@
 # HyvesFoto.nl
 
 A client-side image cropper and collage maker. Hyves renders timeline images at
-roughly **15:6** and hard-crops anything that does not match — often straight
+roughly **52:25** and hard-crops anything that does not match — often straight
 through someone's face. This app lets people choose the frame themselves, or
 line up three photos into one timeline-shaped collage, and upload something that
 already fits.
@@ -140,12 +140,14 @@ the live site:
 ## Domain rules
 
 - Target ratios live in `src/content/aspectRatios.ts`. **Nothing hard-codes
-  2.5.** The Hyves timeline ratio is **not yet confirmed**: the preset says 15:6
-  (2.5), but a feed screenshot measured ≈2.24 (9:4). The site is a
-  client-rendered Compose app behind Cloudflare, so the value cannot be read
-  from CSS — it needs measuring against a real post. Correcting it must stay a
-  one-line change.
-- Ratio labels render as authored, never reduced: 15:6 must not display as 5:2.
+  a specific ratio.** Both the desktop and mobile Hyves timeline ratios are
+  measured from real screenshots (pixel dimensions, not read from CSS — the
+  site is a client-rendered Compose app behind Cloudflare): desktop is
+  **52:25** (≈2.08, from 416×200px, the `buzz` preset), mobile is narrower at
+  **311:200** (≈1.56, from 311×200px, `mobileAspectRatio` — overlay-only, not
+  a selectable preset). Correcting either must stay a one-line change.
+- Ratio labels render as authored, never reduced: a preset authored as 30:12
+  must not display as 5:2.
 - Image bytes belong in IndexedDB (`src/utils/imageStore/`), never in a store or
   `localStorage`. Stores hold ids, names and object URLs only.
 - Every `URL.createObjectURL` must be revoked. `useCollageEditor` tracks them in

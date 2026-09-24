@@ -8,7 +8,7 @@ import { resolveCollageTiles } from '~/utils/resolveCollageTiles';
 import { CollageGrid } from './index';
 import type { CollageGridImage } from './index';
 
-const buzz = { width: 15, height: 6 };
+const buzz = { width: 52, height: 25 };
 
 const swatch = (
   fill: string,
@@ -59,6 +59,7 @@ const meta = {
   component: CollageGrid,
   args: {
     outputRatio: buzz,
+    mobileGuideOpacity: 1,
     onCropViewChange: fn(),
     onRemoveImage: fn(),
     onSwapImages: fn(),

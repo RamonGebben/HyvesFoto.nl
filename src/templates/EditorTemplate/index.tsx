@@ -10,6 +10,7 @@ import { AspectRatioPicker } from '~/molecules/AspectRatioPicker';
 import { CollageLayoutPicker } from '~/molecules/CollageLayoutPicker';
 import { Footer } from '~/molecules/Footer';
 import { GapWidthSlider } from '~/molecules/GapWidthSlider';
+import { MobileGuideOpacitySlider } from '~/molecules/MobileGuideOpacitySlider';
 import { CollageGrid } from '~/organisms/CollageGrid';
 import { ImageDropzone } from '~/organisms/ImageDropzone';
 import type { CropView } from '~/utils/computeCropRect';
@@ -117,6 +118,8 @@ export type EditorTemplateProps = {
   minGapRatio: number;
   maxGapRatio: number;
   onGapRatioChange: (gapRatio: number) => void;
+  mobileGuideOpacity: number;
+  onMobileGuideOpacityChange: (opacity: number) => void;
   onFilesAccepted: (files: readonly File[]) => void;
   onRemoveImage: (id: string) => void;
   onCropViewChange: (id: string, view: CropView) => void;
@@ -140,6 +143,8 @@ export const EditorTemplate = ({
   minGapRatio,
   maxGapRatio,
   onGapRatioChange,
+  mobileGuideOpacity,
+  onMobileGuideOpacityChange,
   onFilesAccepted,
   onRemoveImage,
   onCropViewChange,
@@ -213,10 +218,19 @@ export const EditorTemplate = ({
             images={images}
             tiles={tiles}
             outputRatio={outputRatio}
+            mobileGuideOpacity={mobileGuideOpacity}
             onCropViewChange={onCropViewChange}
             onRemoveImage={onRemoveImage}
             onSwapImages={onSwapImages}
             isExporting={isExporting}
+          />
+          <CardHint>
+            De getinte randen en streepjes laten zien hoeveel Hyves er op mobiel
+            extra afsnijdt — hou het belangrijkste binnen de streepjes.
+          </CardHint>
+          <MobileGuideOpacitySlider
+            opacity={mobileGuideOpacity}
+            onChange={onMobileGuideOpacityChange}
           />
 
           <Button
