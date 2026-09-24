@@ -117,6 +117,12 @@ export const CollageGrid = ({
   return (
     <DndContext
       sensors={sensors}
+      // All tiles already sit inside one visible grid frame — there's no
+      // content below/above worth scrolling to reach. Without this, dnd-kit
+      // auto-scrolls the page when the pointer nears the viewport edge
+      // (common on a phone screen), which yanks the drop target out from
+      // under the finger mid-drag.
+      autoScroll={false}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}

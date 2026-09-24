@@ -41,13 +41,6 @@ const dragOnto = async (page: Page, fromLabel: RegExp, toLabel: RegExp) => {
     y: toBox.y + toBox.height / 2,
   };
 
-  // The mobile project emulates a phone viewport. Chromium otherwise scrolls
-  // the page while the pointer crosses the long collage, moving the drop tile
-  // away from the pointer before dnd-kit resolves the target.
-  await page.evaluate(() => {
-    document.documentElement.style.setProperty('overflow', 'hidden');
-  });
-
   await page.mouse.move(fromCenter.x, fromCenter.y);
   await page.mouse.down();
   await page.mouse.move(
@@ -57,10 +50,6 @@ const dragOnto = async (page: Page, fromLabel: RegExp, toLabel: RegExp) => {
   );
   await page.mouse.move(toCenter.x, toCenter.y, { steps: 5 });
   await page.mouse.up();
-
-  await page.evaluate(() => {
-    document.documentElement.style.removeProperty('overflow');
-  });
 };
 
 test.describe('collage editor', () => {
