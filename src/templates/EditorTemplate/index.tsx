@@ -146,11 +146,14 @@ export const EditorTemplate = ({
   <>
     <Banner>
       <BannerInner>
-        <Title>Bijsnijden voor Hyves, zonder dat het mooiste eraf valt</Title>
         <Subtitle>
-          Hyves snijdt tijdlijnfoto’s bij waar het zelf wil. Kies hier je eigen
-          uitsnede, kies een rasterindeling voor meerdere foto’s samen, en
-          upload iets dat meteen goed past.
+          <strong>HyvesFoto.nl</strong>
+        </Subtitle>
+        <Title>Jouw foto. Jouw uitsnede. Klaar voor Hyves.</Title>
+        <Subtitle>
+          Bepaal zelf wat er in beeld blijft. Snijd één foto bij of maak een
+          raster van meerdere foto’s en upload het resultaat rechtstreeks naar
+          Hyves.
         </Subtitle>
       </BannerInner>
     </Banner>
