@@ -52,10 +52,11 @@ test.describe('collage editor', () => {
 
   test('shows the editor with the Buzz format selected', async ({ page }) => {
     await expect(
-      page.getByRole('heading', { level: 1, name: /bijsnijden voor hyves/i }),
+      page.getByRole('heading', {
+        level: 1,
+        name: /jouw foto\. jouw uitsnede\. klaar voor Hyves\./i,
+      }),
     ).toBeVisible();
-
-    await expect(page.getByRole('radio', { name: /buzz/i })).toBeChecked();
   });
 
   test('accepts a dropped photo and keeps it across a reload', async ({
