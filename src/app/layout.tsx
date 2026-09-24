@@ -15,8 +15,18 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   title: 'HyvesFoto.nl',
-  description:
-    'Snijd je foto’s zo bij dat ze goed op je Hyves-tijdlijn passen, zonder dat er koppen afvallen.',
+  description: 'Jouw foto. Jouw uitsnede. Klaar voor Hyves.',
+  openGraph: {
+    title: 'HyvesFoto.nl',
+    description: 'Jouw foto. Jouw uitsnede. Klaar voor Hyves.',
+    locale: 'nl_NL',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'HyvesFoto.nl',
+    description: 'Jouw foto. Jouw uitsnede. Klaar voor Hyves.',
+  },
 };
 
 export const viewport: Viewport = {
