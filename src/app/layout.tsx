@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata, Viewport } from 'next';
 import { Nunito_Sans } from 'next/font/google';
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <StyledComponentsRegistry>
           <AppProviders>{children}</AppProviders>
         </StyledComponentsRegistry>
+        <Analytics />
       </body>
     </html>
   );
