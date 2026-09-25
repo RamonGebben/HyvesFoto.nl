@@ -1,5 +1,6 @@
 'use client';
 
+import { track } from '@vercel/analytics';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -271,12 +272,17 @@ export const useCollageEditor = () => {
       );
       const blob = await renderExportPlan(plan, sources);
       downloadBlob(blob, 'buzz-collage.jpg');
+      track('Collage exported', {
+        aspectRatio: aspectRatioId,
+        layout: selectedLayout?.id ?? 'unknown',
+        imageCount: editableImages.length,
+      });
     } catch (error) {
       console.error('Kon de export niet maken', error);
     } finally {
       setIsExporting(false);
     }
-  }, [editableImages, tiles, outputRatio]);
+  }, [aspectRatioId, editableImages, selectedLayout, tiles, outputRatio]);
 
   return {
     presets: aspectRatioPresets,
