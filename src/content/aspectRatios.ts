@@ -7,9 +7,12 @@ import type { Ratio } from '~/utils/geometry';
  * roughly 480:232 and hard-crops anything that does not match, often through
  * faces — cross-checked against a comparable cropping tool's own reference
  * dimensions for the same format. `banner` is the profile cover/banner,
- * measured 930×237px from a real profile screenshot. Nothing in the
- * geometry code hard-codes either value — it all reads from here, so
- * correcting a ratio is a one-line change.
+ * ratio 930:272 (≈3.42) — measured directly from the crop rectangle in
+ * Hyves' own profile-banner cropper (not the raw upload, which is what an
+ * earlier 930:237 measurement mistakenly used, causing Hyves to still crop
+ * the left/right edges of an export that already claimed to fit). Nothing
+ * in the geometry code hard-codes either value — it all reads from here,
+ * so correcting a ratio is a one-line change.
  */
 
 export type AspectRatioId = 'buzz' | 'banner';
@@ -39,7 +42,7 @@ export const aspectRatioPresets: readonly AspectRatioPreset[] = [
     id: 'banner',
     label: 'Banner',
     width: 930,
-    height: 237,
+    height: 272,
     description:
       'Past op de omslagfoto van je profiel, zonder dat Hyves er zelf nog iets afsnijdt.',
     usageLabel: 'Voor je profiel',
