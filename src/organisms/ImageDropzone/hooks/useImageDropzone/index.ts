@@ -82,7 +82,11 @@ export const useImageDropzone = ({
   const inputProps = useMemo(
     () => ({
       type: 'file' as const,
-      accept: ACCEPTED_IMAGE_TYPES.join(','),
+      // A wildcard, not the explicit ACCEPTED_IMAGE_TYPES list: Android's
+      // "From this device" file picker fails to list folders when `accept`
+      // contains multiple comma-separated MIME types. Real validation still
+      // happens in partitionImageFiles, so the OS-picker hint can stay loose.
+      accept: 'image/*',
       multiple: true,
       onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
         handleFiles([...(event.target.files ?? [])]);
