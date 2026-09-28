@@ -231,7 +231,7 @@ export const EditorTemplate = ({
             <>
               <CardHint>
                 De getinte randen en streepjes laten zien hoeveel Hyves er op
-                mobiel extra afsnijdt — hou het belangrijkste binnen de
+                mobiel extra afsnijdt, hou het belangrijkste binnen de
                 streepjes.
               </CardHint>
               <MobileGuideOpacitySlider
