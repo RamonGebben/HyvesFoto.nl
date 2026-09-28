@@ -3,7 +3,6 @@
 import styled from 'styled-components';
 
 import type { AspectRatioId, AspectRatioPreset } from '~/content/aspectRatios';
-import { formatAspectRatio } from '~/utils/formatAspectRatio';
 
 const Fieldset = styled.fieldset`
   display: flex;
@@ -12,9 +11,6 @@ const Fieldset = styled.fieldset`
   border: 0;
   padding: 0;
   margin: 0;
-  /* Only one aspect ratio preset ships right now, so there's nothing to
-     choose between yet — hidden until a second preset lands. */
-  display: none;
 `;
 
 const Legend = styled.legend`
@@ -53,7 +49,7 @@ const OptionLabel = styled.span`
   font-size: ${props => props.theme.fontSize.sm};
 `;
 
-const OptionRatio = styled.span`
+const OptionUsage = styled.span`
   color: ${props => props.theme.color.textMuted};
   font-size: ${props => props.theme.fontSize.xs};
 `;
@@ -99,7 +95,7 @@ export const AspectRatioPicker = ({
           onChange={() => onSelect(preset.id)}
         />
         <OptionLabel>{preset.label}</OptionLabel>
-        <OptionRatio>{formatAspectRatio(preset)}</OptionRatio>
+        <OptionUsage>{preset.usageLabel}</OptionUsage>
       </Option>
     ))}
   </Fieldset>

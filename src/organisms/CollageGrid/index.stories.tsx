@@ -8,7 +8,7 @@ import { resolveCollageTiles } from '~/utils/resolveCollageTiles';
 import { CollageGrid } from './index';
 import type { CollageGridImage } from './index';
 
-const buzz = { width: 52, height: 25 };
+const buzz = { width: 480, height: 232 };
 
 const swatch = (
   fill: string,

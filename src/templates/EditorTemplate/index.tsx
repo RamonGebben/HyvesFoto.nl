@@ -118,6 +118,8 @@ export type EditorTemplateProps = {
   minGapRatio: number;
   maxGapRatio: number;
   onGapRatioChange: (gapRatio: number) => void;
+  /** Whether the Buzz-timeline mobile safe-zone guide applies to this ratio. */
+  showMobileGuide: boolean;
   mobileGuideOpacity: number;
   onMobileGuideOpacityChange: (opacity: number) => void;
   onFilesAccepted: (files: readonly File[]) => void;
@@ -143,6 +145,7 @@ export const EditorTemplate = ({
   minGapRatio,
   maxGapRatio,
   onGapRatioChange,
+  showMobileGuide,
   mobileGuideOpacity,
   onMobileGuideOpacityChange,
   onFilesAccepted,
@@ -218,20 +221,25 @@ export const EditorTemplate = ({
             images={images}
             tiles={tiles}
             outputRatio={outputRatio}
-            mobileGuideOpacity={mobileGuideOpacity}
+            mobileGuideOpacity={showMobileGuide ? mobileGuideOpacity : 0}
             onCropViewChange={onCropViewChange}
             onRemoveImage={onRemoveImage}
             onSwapImages={onSwapImages}
             isExporting={isExporting}
           />
-          <CardHint>
-            De getinte randen en streepjes laten zien hoeveel Hyves er op mobiel
-            extra afsnijdt — hou het belangrijkste binnen de streepjes.
-          </CardHint>
-          <MobileGuideOpacitySlider
-            opacity={mobileGuideOpacity}
-            onChange={onMobileGuideOpacityChange}
-          />
+          {showMobileGuide && (
+            <>
+              <CardHint>
+                De getinte randen en streepjes laten zien hoeveel Hyves er op
+                mobiel extra afsnijdt, hou het belangrijkste binnen de
+                streepjes.
+              </CardHint>
+              <MobileGuideOpacitySlider
+                opacity={mobileGuideOpacity}
+                onChange={onMobileGuideOpacityChange}
+              />
+            </>
+          )}
 
           <Button
             icon={<Download />}
