@@ -64,6 +64,7 @@ const meta = {
     gapRatio: GAP_RATIO,
     minGapRatio: 0,
     maxGapRatio: 0.04,
+    showMobileGuide: true,
     mobileGuideOpacity: 1,
     onSelectAspectRatio: fn(),
     onSelectLayout: fn(),

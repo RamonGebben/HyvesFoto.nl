@@ -271,7 +271,7 @@ export const useCollageEditor = () => {
         })),
       );
       const blob = await renderExportPlan(plan, sources);
-      downloadBlob(blob, 'buzz-collage.jpg');
+      downloadBlob(blob, `${aspectRatioId}-collage.jpg`);
       track('Collage exported', {
         aspectRatio: aspectRatioId,
         layout: selectedLayout?.id ?? 'unknown',
@@ -287,6 +287,10 @@ export const useCollageEditor = () => {
   return {
     presets: aspectRatioPresets,
     selectedAspectRatioId: aspectRatioId,
+    // The mobile safe-zone guide is measured against the Buzz timeline's own
+    // mobile crop — it has no equivalent for a banner, which never renders
+    // on the timeline.
+    showMobileGuide: aspectRatioId === 'buzz',
     outputRatio,
     images: editableImages,
     tiles,

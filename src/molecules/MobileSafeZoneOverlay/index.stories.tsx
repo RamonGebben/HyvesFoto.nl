@@ -32,8 +32,8 @@ const meta = {
   title: 'Molecules/MobileSafeZoneOverlay',
   component: MobileSafeZoneOverlay,
   args: {
-    desktopRatio: { width: 52, height: 25 },
-    mobileRatio: { width: 311, height: 200 },
+    desktopRatio: { width: 480, height: 232 },
+    mobileRatio: { width: 384, height: 232 },
     opacity: 1,
   },
   argTypes: {
@@ -60,7 +60,7 @@ export const Buzz: Story = {};
 
 export const NoCutoff: Story = {
   args: {
-    mobileRatio: { width: 52, height: 25 },
+    mobileRatio: { width: 480, height: 232 },
   },
 };
 
